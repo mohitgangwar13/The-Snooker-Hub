@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Snooker Hub | Snooker & Pool Booking</title>
+
+    <style>
+
+        /* ================= RESET ================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #070b09;
+            color: #f5f2e8;
+            line-height: 1.6;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(3, 18, 11, 0.88);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+
+            box-shadow: 0 5px 25px rgba(0,0,0,.35);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+
+            padding: 16px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #eee;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 92vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 60px 20px;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    rgba(2, 17, 10, .68),
+                    rgba(2, 10, 7, .92)
+                ),
+                url("https://images.unsplash.com/photo-1606166325693-7e1e8c9b6a55?auto=format&fit=crop&w=2000&q=90");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(15, 120, 65, .28),
+                    transparent 60%
+                );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+
+            color: #d4af37;
+
+            letter-spacing: 5px;
+            font-size: 13px;
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 85px);
+            line-height: 1;
+
+            margin-bottom: 25px;
+
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #ddd;
+
+            max-width: 680px;
+            margin: 0 auto 35px;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .btn {
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            background: linear-gradient(
+                135deg,
+                #d4af37,
+                #f0ce55
+            );
+
+            color: #07120c;
+
+            text-decoration: none;
+            border-radius: 50px;
+
+            font-weight: bold;
+
+            border: none;
+            cursor: pointer;
+
+            font-size: 16px;
+
+            box-shadow:
+                0 8px 25px rgba(212,175,55,.22);
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 35px rgba(212,175,55,.35);
+        }
+
+
+        /* ================= COMMON ================= */
+
+        section {
+            padding: 90px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+
+            color: #fff;
+        }
+
+        .section-subtitle {
+            text-align: center;
+
+            color: #9ea7a1;
+
+            margin-bottom: 50px;
+        }
+
+
+        /* ================= TABLES ================= */
+
+        .tables {
+            background:
+                radial-gradient(
+                    circle at top,
+                    #0d3b27,
+                    #070b09 65%
+                );
+        }
+
+        .table-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .table-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.09),
+                    rgba(255,255,255,.025)
+                );
+
+            border: 1px solid rgba(212,175,55,.4);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.3);
+
+            backdrop-filter: blur(12px);
+
+            transition: .35s;
+        }
+
+        .table-card:hover {
+            transform: translateY(-10px);
+
+            border-color: #d4af37;
+
+            box-shadow:
+                0 20px 45px rgba(0,0,0,.45);
+        }
+
+        .table-image {
+            height: 210px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 75px;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    rgba(3,40,24,.45),
+                    rgba(2,25,15,.75)
+                ),
+                url("https://images.unsplash.com/photo-1606166325693-7e1e8c9b6a55?auto=format&fit=crop&w=900&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .table-image::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,.5)
+                );
+        }
+
+        .table-image {
+            text-shadow:
+                0 5px 20px rgba(0,0,0,.8);
+        }
+
+        .table-info {
+            padding: 25px;
+        }
+
+        .table-info h3 {
+            color: #fff;
+
+            margin-bottom: 10px;
+
+            font-size: 21px;
+        }
+
+        .table-info p {
+            color: #aeb6b1;
+        }
+
+        .price {
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-top: 18px;
+
+            color: #d4af37;
+        }
+
+
+        /* ================= BOOKING ================= */
+
+        .booking-section {
+            background:
+                linear-gradient(
+                    rgba(2,25,15,.96),
+                    rgba(3,10,7,.98)
+                );
+        }
+
+        .booking-box {
+            max-width: 700px;
+
+            margin: auto;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.10),
+                    rgba(255,255,255,.035)
+                );
+
+            padding: 38px;
+
+            border-radius: 24px;
+
+            border: 1px solid rgba(212,175,55,.55);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,.45);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .booking-box h2 {
+            text-align: center;
+
+            margin-bottom: 10px;
+
+            color: #fff;
+
+            font-size: 30px;
+        }
+
+        .booking-box > p {
+            text-align: center;
+
+            color: #9ea7a1;
+
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #eee;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+
+            padding: 14px;
+
+            background: rgba(255,255,255,.07);
+
+            color: white;
+
+            border: 1px solid rgba(255,255,255,.15);
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            transition: .3s;
+        }
+
+        .form-group select option {
+            background: #10271b;
+            color: white;
+        }
+
+        .form-group input::placeholder {
+            color: #89918c;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+
+            border-color: #d4af37;
+
+            box-shadow:
+                0 0 0 3px rgba(212,175,55,.08);
+        }
+
+        .booking-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            background:
+                linear-gradient(
+                    145deg,
+                    #0b1711,
+                    #07100b
+                );
+        }
+
+        .about-content {
+            max-width: 850px;
+
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .about-content p {
+            color: #aeb6b1;
+
+            font-size: 18px;
+        }
+
+
+        /* ================= CONTACT ================= */
+
+        .contact {
+            background:
+                radial-gradient(
+                    circle at center,
+                    #0d3925,
+                    #070b09 70%
+                );
+        }
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .contact-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.09),
+                    rgba(255,255,255,.025)
+                );
+
+            border: 1px solid rgba(212,175,55,.4);
+
+            padding: 28px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,.25);
+
+            backdrop-filter: blur(10px);
+
+            transition: .3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-7px);
+
+            border-color: #d4af37;
+        }
+
+        .contact-card .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .contact-card h3 {
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .contact-card p {
+            color: #aeb6b1;
+            word-break: break-word;
+        }
+
+        .whatsapp-link {
+            color: #ddd;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .whatsapp-link:hover {
+            color: #d4af37;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #020806;
+
+            text-align: center;
+
+            padding: 28px;
+
+            color: #777;
+
+            border-top:
+                1px solid rgba(212,175,55,.15);
+        }
+
+        footer span {
+            color: #d4af37;
+        }
+
+
+        /* ================= SUCCESS ================= */
+
+        .success-message {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: rgba(11,107,58,.15);
+
+            border: 1px solid #d4af37;
+
+            border-radius: 10px;
+
+            color: #d4af37;
+
+            text-align: center;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+
+                top: 65px;
+
+                left: 0;
+
+                width: 100%;
+
+                background:
+                    rgba(3,18,11,.97);
+
+                backdrop-filter: blur(15px);
+
+                flex-direction: column;
+
+                text-align: center;
+
+                padding: 20px;
+
+                border-bottom:
+                    1px solid rgba(212,175,55,.25);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 88vh;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .table-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-box {
+                padding: 25px 18px;
+            }
+
+            .section-title {
+                font-size: 31px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+                🎱 The <span>Snooker Hub</span>
+            </div>
+
+            <div
+                class="menu-btn"
+                onclick="toggleMenu()"
+            >
+                ☰
+            </div>
+
+            <ul
+                class="nav-links"
+                id="navLinks"
+            >
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#tables">Tables</a>
+                </li>
+
+                <li>
+                    <a href="#booking">Book Now</a>
+                </li>
+
+                <li>
+                    <a href="#about">About</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section
+        class="hero"
+        id="home"
+    >
+
+        <div class="hero-content">
+
+            <div class="hero-tag">
+                PREMIUM SNOOKER & POOL EXPERIENCE
+            </div>
+
+            <h1>
+
+                Welcome to
+                <br>
+
+                <span>
+                    The Snooker Hub
+                </span>
+
+            </h1>
+
+            <p>
+
+                Premium Snooker & Pool Experience
+                <br>
+
+                Easy Online Table Booking
+
+            </p>
+
+            <a
+                href="#booking"
+                class="btn"
+            >
+                Book Your Table 🎱
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TABLES ================= -->
+
+    <section
+        class="tables"
+        id="tables"
+    >
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Our Tables
+            </h2>
+
+            <p class="section-subtitle">
+                Choose your preferred table and book your time slot.
+            </p>
+
+
+            <div class="table-grid">
+
+
+                <!-- TABLE 1 -->
+
+                <div class="table-card">
+
+                    <div class="table-image">
+                        🎱
+                    </div>
+
+                    <div class="table-info">
+
+                        <h3>
+                            Professional Snooker Table
+                        </h3>
+
+                        <p>
+                            Premium professional snooker table
+                            for an excellent playing experience.
+                        </p>
+
+                        <div class="price">
+                            ₹300 / Hour
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TABLE 2 -->
+
+                <div class="table-card">
+
+                    <div class="table-image">
+                        🎱
+                    </div>
+
+                    <div class="table-info">
+
+                        <h3>
+                            Professional Mini Snooker Table
+                        </h3>
+
+                        <p>
+                            Professional quality Mini Snooker
+                            table for comfortable gameplay.
+                        </p>
+
+                        <div class="price">
+                            ₹240 / Hour
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TABLE 3 -->
+
+                <div class="table-card">
+
+                    <div class="table-image">
+                        🎱
+                    </div>
+
+                    <div class="table-info">
+
+                        <h3>
+                            Comfortable 8 Ball Pool Table
+                        </h3>
+
+                        <p>
+                            Comfortable 8 Ball Pool Table
+                            for an enjoyable game.
+                        </p>
+
+                        <div class="price">
+                            ₹180 / Hour
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BOOKING ================= -->
+
+    <section
+        class="booking-section"
+        id="booking"
+    >
+
+        <div class="container">
+
+            <div class="booking-box">
+
+                <h2>
+                    🎱 Book Your Table
+                </h2>
+
+                <p>
+                    Fill in your details and send your booking request
+                    directly on WhatsApp.
+                </p>
+
+
+                <form id="bookingForm">
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter 10 digit mobile number"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Booking Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="table">
+                            Select Table
+                        </label>
+
+                        <select
+                            id="table"
+                            required
+                        >
+
+                            <option value="">
+                                Select Table
+                            </option>
+
+                            <option value="Professional Snooker Table - ₹300/hour">
+                                Professional Snooker Table - ₹300/hour
+                            </option>
+
+                            <option value="Professional Mini Snooker Table - ₹240/hour">
+                                Professional Mini Snooker Table - ₹240/hour
+                            </option>
+
+                            <option value="8 Ball Pool Table - ₹180/hour">
+                                8 Ball Pool Table - ₹180/hour
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="time">
+                            Select Time Slot
+                        </label>
+
+                        <select
+                            id="time"
+                            required
+                        >
+
+                            <option value="">
+                                Select Time Slot
+                            </option>
+
+                            <option>12:00 PM - 01:00 PM</option>
+                            <option>01:00 PM - 02:00 PM</option>
+                            <option>02:00 PM - 03:00 PM</option>
+                            <option>03:00 PM - 04:00 PM</option>
+                            <option>04:00 PM - 05:00 PM</option>
+                            <option>05:00 PM - 06:00 PM</option>
+                            <option>06:00 PM - 07:00 PM</option>
+                            <option>07:00 PM - 08:00 PM</option>
+                            <option>08:00 PM - 09:00 PM</option>
+                            <option>09:00 PM - 10:00 PM</option>
+                            <option>10:00 PM - 11:00 PM</option>
+                            <option>11:00 PM - 12:00 AM</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="players">
+                            Number of Players
+                        </label>
+
+                        <input
+                            type="number"
+                            id="players"
+                            min="1"
+                            max="10"
+                            placeholder="Number of players"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn booking-btn"
+                    >
+                        Send Booking Request 🎱
+                    </button>
+
+
+                </form>
+
+
+                <div
+                    class="success-message"
+                    id="successMessage"
+                >
+
+                    ✅ Booking request prepared successfully!
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section
+        class="about"
+        id="about"
+    >
+
+        <div class="container">
+
+            <div class="about-content">
+
+                <h2 class="section-title">
+                    About The Snooker Hub
+                </h2>
+
+                <p>
+
+                    The Snooker Hub is a premium snooker and pool
+                    destination designed for players who love the game.
+                    Enjoy a comfortable environment, quality tables
+                    and easy online booking.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section
+        class="contact"
+        id="contact"
+    >
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Contact Us
+            </h2>
+
+            <p class="section-subtitle">
+
+                Have a question or want to book a table?
+                Get in touch with us.
+
+            </p>
+
+
+            <div class="contact-grid">
+
+
+                <!-- PHONE -->
+
+                <div class="contact-card">
+
+                    <div class="icon">
+                        📱
+                    </div>
+
+                    <h3>
+                        Phone
+                    </h3>
+
+                    <p>
+
+                        <a
+                            href="tel:+919058393640"
+                            class="whatsapp-link"
+                        >
+                            +91 9058393640
+                        </a>
+
+                    </p>
+
+                    <p>
+
+                        <a
+                            href="tel:+917409826600"
+                            class="whatsapp-link"
+                        >
+                            +91 7409826600
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="contact-card">
+
+                    <div class="icon">
+                        📍
+                    </div>
+
+                    <h3>
+                        Location
+                    </h3>
+
+                    <p>
+
+                        Hartmann College Road,
+                        Basant Vihar Chauraha,
+                        Mini Bypass,
+                        Izzatnagar,
+                        Bareilly
+
+                    </p>
+
+                </div>
+
+
+                <!-- OPENING HOURS -->
+
+                <div class="contact-card">
+
+                    <div class="icon">
+                        🕐
+                    </div>
+
+                    <h3>
+                        Opening Hours
+                    </h3>
+
+                    <p>
+                        12:00 PM - 12:00 AM
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        © 2026
+
+        <span>
+            The Snooker Hub
+        </span>
+
+        — All Rights Reserved.
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* MOBILE MENU */
+
+        function toggleMenu() {
+
+            document
+                .getElementById("navLinks")
+                .classList
+                .toggle("active");
+
+        }
+
+
+        /* CLOSE MOBILE MENU */
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        document
+                            .getElementById("navLinks")
+                            .classList
+                            .remove("active");
+
+                    }
+                );
+
+            });
+
+
+        /* SET MINIMUM BOOKING DATE */
+
+        const today = new Date()
+            .toISOString()
+            .split("T")[0];
+
+        document
+            .getElementById("date")
+            .setAttribute(
+                "min",
+                today
+            );
+
+
+        /* BOOKING */
+
+        document
+            .getElementById("bookingForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const name =
+                        document
+                            .getElementById("name")
+                            .value
+                            .trim();
+
+
+                    const phone =
+                        document
+                            .getElementById("phone")
+                            .value
+                            .trim();
+
+
+                    const date =
+                        document
+                            .getElementById("date")
+                            .value;
+
+
+                    const table =
+                        document
+                            .getElementById("table")
+                            .value;
+
+
+                    const time =
+                        document
+                            .getElementById("time")
+                            .value;
+
+
+                    const players =
+                        document
+                            .getElementById("players")
+                            .value;
+
+
+                    /* WHATSAPP NUMBER */
+
+                    const whatsappNumber =
+                        "917409826600";
+
+
+                    /* BOOKING MESSAGE */
+
+                    const message =
+
+                        "🎱 *THE SNOOKER HUB BOOKING*%0A%0A" +
+
+                        "👤 Name: " +
+                        encodeURIComponent(name) +
+                        "%0A" +
+
+                        "📱 Mobile: " +
+                        encodeURIComponent(phone) +
+                        "%0A" +
+
+                        "📅 Date: " +
+                        encodeURIComponent(date) +
+                        "%0A" +
+
+                        "🎱 Table: " +
+                        encodeURIComponent(table) +
+                        "%0A" +
+
+                        "⏰ Time: " +
+                        encodeURIComponent(time) +
+                        "%0A" +
+
+                        "👥 Players: " +
+                        encodeURIComponent(players) +
+
+                        "%0A%0A" +
+
+                        "Please confirm my booking.";
+
+
+                    /* WHATSAPP URL */
+
+                    const whatsappURL =
+
+                        "https://wa.me/" +
+                        whatsappNumber +
+                        "?text=" +
+                        message;
+
+
+                    /* SUCCESS MESSAGE */
+
+                    document
+                        .getElementById("successMessage")
+                        .style.display = "block";
+
+
+                    /* OPEN WHATSAPP */
+
+                    window.open(
+                        whatsappURL,
+                        "_blank"
+                    );
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>
